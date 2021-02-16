@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 //import image
 import home3 from '../img/Home3.jpg';
-import blockchainLogo from '../img/blockchainLogo.jpg';
+import blockchainLogo2 from '../img/blockchainLogo2.jpg';
 import ethereumLogo from '../img/ethereumLogo.svg';
 import IpfsLogo from '../img/IpfsLogo.png';
+import bitcoinLogo from '../img/bitcoinLogo.png';
+import rippleLogo from '../img/rippleLogo.jpeg';
 
 const Home = () => {
 	return(
@@ -24,20 +26,22 @@ const Home = () => {
 				</ImageStyled>			
 			</WholeSectionStyled>
 			<FooterStyled>
-				<a href=""><img src={blockchainLogo} alt="blockchain" /></a>
-				<img src={ethereumLogo} alt="ethereum" />
-				<img src={IpfsLogo} alt="Ipfs" />
+				<a href="https://www.blockchain.com/" target="_blank"><img src={blockchainLogo2} alt="blockchain" /></a>
+				<a href="https://ethereum.org/en/" target="_blank"><img src={ethereumLogo} alt="ethereum" /></a>
+				<a href="https://ipfs.io/" target="_blank"><img src={IpfsLogo} alt="Ipfs" /></a>
+				<a href="https://bitcoin.org/en/" target="_blank"><img src={bitcoinLogo} alt="bitcoin" />></a>
+				<a href="" target="_blank"><img src={rippleLogo} alt="ripple" /></a>
 			</FooterStyled>
 		</>
 	);
 }
 
 const WholeSectionStyled = styled.div`
-	min-height: 77vh;
+	min-height: 73vh;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 5rem 1rem;
+	padding: 3rem 1rem;
 `;
 
 const ProofStyled = styled.div`
@@ -60,13 +64,17 @@ const ImageStyled = styled.div`
 `;
 
 const FooterStyled = styled.div`
+
 	background: white;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
 	padding: 0rem 6rem;
+	a {
+		padding: 2rem;
+	}
 	img {
-		width: 6rem;
+		width: 4rem;
 	}
 `
 
