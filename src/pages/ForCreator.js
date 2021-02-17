@@ -1,12 +1,23 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {Heading, Box, Form, Flex, Field, Input, Textarea, Button, Image, Card} from 'rimble-ui';
+
+import { uploadImage } from '../actions/imageAction.js';
 
 import Home3 from '../img/Home3.jpg';
 
 const ForCreator = () => {
 
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [tags, setTags] = useState("");
 	const [file, setFile] = useState(null);
 	const [buffer, setBuffer] = useState(null);
+
+	const history = useHistory();
+
+	const dispatch = useDispatch();
 
 	const captureFileHandler = (event) => {
 		const fileImage = event.target.files[0];
@@ -17,9 +28,14 @@ const ForCreator = () => {
 			setFile(window.URL.createObjectURL(fileImage));
 	}
 
-	const submitHandler = (event) => {
+	const submitHandler = async(event) => {
 		event.preventDefault();
-
+		try {
+			await dispatch(uploadImage(buffer, title, description, tags, history));
+			console.log("success");
+		} catch {
+			console.log("error");
+		}
 	}
 
 	return(
@@ -34,6 +50,7 @@ const ForCreator = () => {
 									type="text"
 									required	
 									width={1}
+									onChange={(e) => setTitle(e.target.value)}
 								/>
 							</Field>
 						</Box>
@@ -42,7 +59,9 @@ const ForCreator = () => {
 								<Textarea 
 									placeholder="Type something" 
 									row={4} 
-									width={1}/>
+									width={1}
+									onChange={(e) => setDescription(e.target.value)}
+								/>
 							</Field>
 						</Box>
 						<Box width={[1, 1, 1]} px={3}>
@@ -51,6 +70,7 @@ const ForCreator = () => {
 									type="text"
 									required
 									width={1}
+									onChange={(e) => setTags(e.target.value)}
 								/>
 							</Field>
 						</Box>
